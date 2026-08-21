@@ -1,0 +1,69 @@
+name: DeviceAuthDemo
+options:
+  bundleIdPrefix: com.descope.deviceauthdemo
+  deploymentTarget:
+    iOS: "16.0"
+    tvOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  DeviceAuthDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: DeviceAuthDemo
+        excludes:
+          - "**/.DS_Store"
+          - "TV/**"
+    info:
+      path: DeviceAuthDemo/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        CFBundleDisplayName: "Device Auth Demo"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.descope.deviceauthdemo
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1,2"
+    scheme:
+      testTargets: []
+      gatherCoverageData: false
+
+  DeviceAuthDemoTV:
+    type: application
+    platform: tvOS
+    sources:
+      - path: DeviceAuthDemo
+        excludes:
+          - "**/.DS_Store"
+          - "Resources/Assets.xcassets/**"
+          - "Info.plist"
+          - "TV/**"
+      - path: DeviceAuthDemo/TV/Assets.xcassets
+    info:
+      path: DeviceAuthDemo/TV/Info-tvOS.plist
+      properties:
+        CFBundleDisplayName: "Device Auth Demo"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.descope.deviceauthdemo.tv
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    scheme:
+      testTargets: []
+      gatherCoverageData: false

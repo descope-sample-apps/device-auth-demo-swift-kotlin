@@ -1,0 +1,743 @@
+<title>Device Flow Internals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #1a2027;
+    --ink-muted: #5b6570;
+    --paper: #f1f4f5;
+    --panel: #ffffff;
+    --panel-2: #e9edee;
+    --line: #d8dee1;
+    --device: #b8611a;
+    --device-soft: #b8611a1a;
+    --approver: #0f7a85;
+    --approver-soft: #0f7a851a;
+    --danger: #b3261e;
+    --code-bg: #0d1117;
+    --code-ink: #e6edf3;
+    --font-display: "IBM Plex Sans", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #e7e9ec;
+      --ink-muted: #8b95a1;
+      --paper: #10151c;
+      --panel: #171d26;
+      --panel-2: #1e2530;
+      --line: #2a3340;
+      --device: #f2a93b;
+      --device-soft: #f2a93b22;
+      --approver: #4fd1c5;
+      --approver-soft: #4fd1c522;
+      --danger: #ff6b6b;
+      --code-bg: #0a0e14;
+      --code-ink: #dce3ea;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink: #e7e9ec;
+    --ink-muted: #8b95a1;
+    --paper: #10151c;
+    --panel: #171d26;
+    --panel-2: #1e2530;
+    --line: #2a3340;
+    --device: #f2a93b;
+    --device-soft: #f2a93b22;
+    --approver: #4fd1c5;
+    --approver-soft: #4fd1c522;
+    --danger: #ff6b6b;
+    --code-bg: #0a0e14;
+    --code-ink: #dce3ea;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--device-soft); }
+
+  a { color: var(--approver); }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 28px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+
+  .topbar .brand {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+
+  .topbar nav {
+    display: flex;
+    gap: 18px;
+    white-space: nowrap;
+  }
+
+  .topbar nav a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink-muted);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+  }
+  .topbar nav a:hover { color: var(--ink); border-bottom-color: var(--device); }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 28px 120px;
+  }
+
+  .wide {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  header.hero {
+    max-width: 780px;
+    margin: 0 auto 64px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 12px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  header.hero p {
+    font-size: 18px;
+    color: var(--ink-muted);
+    max-width: 65ch;
+    margin: 0;
+  }
+
+  section { margin: 88px 0; }
+  section:first-of-type { margin-top: 0; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wide .section-head { max-width: 1080px; }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--device);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+
+  .prose {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wide .prose { margin-left: 0; margin-right: 0; max-width: 720px; }
+
+  .prose p { margin: 0 0 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--panel-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    color: var(--ink);
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px auto 0;
+    max-width: 780px;
+  }
+  .legend .tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend .dot.device { background: var(--device); }
+  .legend .dot.approver { background: var(--approver); }
+
+  .diagram-frame {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    overflow-x: auto;
+    margin-top: 24px;
+  }
+
+  pre.mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    min-width: 560px;
+  }
+
+  .codeblock {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 16px;
+    border: 1px solid var(--line);
+  }
+  .codeblock .file {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    padding: 9px 16px;
+    border-bottom: 1px solid color-mix(in srgb, var(--code-ink) 12%, transparent);
+    color: color-mix(in srgb, var(--code-ink) 65%, transparent);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .codeblock pre {
+    margin: 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .codeblock .plat {
+    color: var(--ink-muted);
+  }
+
+  .layer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .layer {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .layer:first-child { border-top: none; padding-top: 0; }
+
+  .layer .num {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-muted);
+    padding-top: 3px;
+  }
+
+  .layer h3 { margin-bottom: 6px; }
+  .layer .role {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    margin-bottom: 12px;
+  }
+  .layer .files {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .layer .files code {
+    font-size: 12px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  .state-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .state-card .name {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--device);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .state-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-muted);
+  }
+
+  .callout {
+    background: var(--approver-soft);
+    border: 1px solid color-mix(in srgb, var(--approver) 35%, transparent);
+    border-radius: 12px;
+    padding: 20px 22px;
+    max-width: 780px;
+    margin: 24px auto 0;
+  }
+  .callout .eyebrow { color: var(--approver); margin-bottom: 8px; }
+  .callout p { margin: 0; font-size: 15px; }
+  .callout p + p { margin-top: 10px; }
+
+  .warn {
+    background: color-mix(in srgb, var(--danger) 10%, var(--panel));
+    border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent);
+    border-radius: 12px;
+    padding: 20px 22px;
+    max-width: 780px;
+    margin: 24px auto 0;
+  }
+  .warn .eyebrow { color: var(--danger); margin-bottom: 8px; }
+  .warn p { margin: 0; font-size: 15px; }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    .platform-grid { grid-template-columns: 1fr; }
+  }
+  .platform-grid .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    background: var(--panel);
+  }
+  .platform-grid .card .plabel {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .platform-grid .card p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  footer {
+    max-width: 780px;
+    margin: 96px auto 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--ink-muted);
+  }
+</style>
+
+<div class="topbar">
+  <span class="brand">DEVICE-FLOW ⁄ INTERNALS</span>
+  <nav>
+    <a href="#sequence">Sequence</a>
+    <a href="#layers">Code layers</a>
+    <a href="#state-machine">State machine</a>
+    <a href="#platforms">Platforms</a>
+    <a href="#gotcha">The one gotcha</a>
+  </nav>
+</div>
+
+<main>
+  <header class="hero">
+    <p class="eyebrow">Reading the codebase</p>
+    <h1>How the device flow actually moves through this code</h1>
+    <p>
+      Both apps are built the same way: five small layers that map directly onto
+      the two HTTP calls Descope's device grant needs. This is a guided read of
+      that shape — what each file is responsible for, and where the OAuth spec
+      shows up in the code — before you look at pushing it anywhere.
+    </p>
+  </header>
+
+  <section id="sequence" class="wide">
+    <div class="section-head">
+      <span class="section-num">1</span>
+      <h2>The sequence, end to end</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Two devices are involved, and they never talk to each other directly —
+        Descope is the only thing both sides ever call. That's the whole idea
+        of device flow: the TV/phone running this app has no keyboard worth
+        typing a password into, so it hands the actual login off to whatever
+        device the user approves from.
+      </p>
+    </div>
+    <div class="legend">
+      <span class="tag"><span class="dot device"></span>This app (the device)</span>
+      <span class="tag"><span class="dot approver"></span>The user's other device (phone/laptop)</span>
+    </div>
+    <div class="diagram-frame">
+<pre class="mermaid">
+sequenceDiagram
+    participant D as This app
+    participant S as Descope
+    participant U as User's other device
+
+    D->>S: POST /oauth2/v1/{projectId}/device<br/>client_id, scope
+    S-->>D: device_code, user_code,<br/>verification_uri, interval, expires_in
+    D->>D: Show user_code + QR<br/>(VerificationView / VerificationScreen)
+
+    loop every `interval` seconds
+        D->>S: POST /oauth2/v1/{projectId}/token<br/>grant_type=device_code, device_code
+        S-->>D: error: authorization_pending
+    end
+
+    U->>S: Open verification_uri_complete,<br/>log in, approve user_code
+
+    D->>S: POST /oauth2/v1/{projectId}/token
+    S-->>D: access_token, id_token
+    D->>D: Decode ID token, show ProfileView / ProfileScreen
+</pre>
+    </div>
+  </section>
+
+  <section id="layers">
+    <div class="section-head">
+      <span class="section-num">2</span>
+      <h2>Five layers, one dependency chain</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Every layer only knows about the one above it. <code>Views</code> hold a
+        <code>ViewModel</code>; the <code>ViewModel</code> holds a
+        <code>Service</code>; the <code>Service</code> reads <code>Config</code>
+        and returns <code>Models</code>. Nothing reaches backward. That's why
+        the same <code>DeviceAuthService</code>/<code>DeviceAuthViewModel</code>
+        run unmodified on phone, tablet, tvOS, and Android TV — only the
+        <code>Views</code> layer changes per form factor.
+      </p>
+    </div>
+
+    <div class="layer-stack">
+      <div class="layer">
+        <span class="num">01</span>
+        <div>
+          <h3>Config — where your Project ID lives</h3>
+          <p class="role">one value in, everything else derived</p>
+          <div class="prose" style="margin:0; max-width:none;">
+            <p>
+              <code>projectId</code> is the only thing you set. <code>clientId</code>
+              is a computed property that just returns it — for Descope's Generic
+              OIDC Application, they're documented to be the same value, so there's
+              nothing to keep in sync by hand.
+            </p>
+          </div>
+          <div class="codeblock">
+            <div class="file"><span>DescopeConfig.swift</span><span class="plat">Swift</span></div>
+            <pre>static let projectId = "YOUR_DESCOPE_PROJECT_ID"
+static var clientId: String { projectId }
+
+static var deviceAuthorizationURL: URL {
+    baseURL.appendingPathComponent("oauth2/v1/\(projectId)/device")
+}</pre>
+          </div>
+          <div class="files"><code>Config/DescopeConfig.swift</code><code>Config.kt</code></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="num">02</span>
+        <div>
+          <h3>Models — the shapes of the two HTTP calls</h3>
+          <p class="role">plain data, no behavior</p>
+          <div class="prose" style="margin:0; max-width:none;">
+            <p>
+              <code>DeviceAuthorizationResponse</code> is what the start call
+              returns (<code>device_code</code>, <code>user_code</code>,
+              <code>verification_uri</code>…). <code>DeviceTokenResponse</code> is
+              a success from the poll. <code>DeviceFlowPollError</code> enumerates
+              the four RFC&nbsp;8628 poll states —
+              <code>authorization_pending</code>, <code>slow_down</code>,
+              <code>access_denied</code>, <code>expired_token</code> — as an
+              actual type instead of loose strings.
+            </p>
+          </div>
+          <div class="files"><code>Models/DeviceAuthModels.swift</code><code>model/DeviceAuthModels.kt</code></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="num">03</span>
+        <div>
+          <h3>Service — the only place that touches the network</h3>
+          <p class="role">two functions, one per HTTP call</p>
+          <div class="prose" style="margin:0; max-width:none;">
+            <p>
+              <code>startDeviceAuthorization()</code> makes the start call once.
+              <code>pollForToken(deviceCode:)</code> makes <em>one</em> poll and
+              returns a result the caller interprets — it doesn't loop itself.
+              That choice matters: it means the polling <em>policy</em> (how
+              often, when to back off, when to give up) lives entirely in the
+              ViewModel, not buried inside the network layer.
+            </p>
+          </div>
+          <div class="codeblock">
+            <div class="file"><span>DeviceAuthService.swift</span><span class="plat">Swift</span></div>
+            <pre>enum PollResult {
+    case success(DeviceTokenResponse)
+    case pending(DeviceFlowPollError)         // authorization_pending / slow_down
+    case terminalFailure(DeviceFlowPollError) // access_denied / expired_token
+}
+
+func pollForToken(deviceCode: String) async throws -> PollResult { … }</pre>
+          </div>
+          <div class="files"><code>Services/DeviceAuthService.swift</code><code>network/DeviceAuthService.kt</code></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="num">04</span>
+        <div>
+          <h3>ViewModel — the state machine and the polling loop</h3>
+          <p class="role">the part worth reading slowly</p>
+          <div class="prose" style="margin:0; max-width:none;">
+            <p>
+              This is where "poll every <code>interval</code> seconds until
+              approved or expired" actually gets implemented — see the state
+              machine below for the full shape of it.
+            </p>
+          </div>
+          <div class="files"><code>ViewModels/DeviceAuthViewModel.swift</code><code>viewmodel/DeviceAuthViewModel.kt</code></div>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="num">05</span>
+        <div>
+          <h3>Views — the only layer that differs per platform</h3>
+          <p class="role">SignIn → Verification → Profile, four times over</p>
+          <div class="prose" style="margin:0; max-width:none;">
+            <p>
+              Three screens, switched on <code>ViewModel.State</code>: a Sign In
+              button, a Verification screen (code + QR + countdown), a Profile
+              screen (decoded claims + access token). iOS wraps its phone/tvOS
+              differences in <code>#if os(tvOS)</code>; Android picks between a
+              <code>ui/</code> (touch) and <code>ui/tv/</code>
+              (<code>tv-material</code>, D-pad-focused) tree at runtime via
+              <code>Context.isTelevision()</code>. Same ViewModel underneath
+              either way.
+            </p>
+          </div>
+          <div class="files"><code>Views/SignInView.swift</code><code>Views/VerificationView.swift</code><code>Views/ProfileView.swift</code><code>ui/*Screen.kt</code></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="state-machine">
+    <div class="section-head">
+      <span class="section-num">3</span>
+      <h2>The state machine</h2>
+    </div>
+    <div class="prose">
+      <p>
+        <code>DeviceAuthViewModel.State</code> has five cases, and every screen
+        in the app is just a direct rendering of one of them — there's no
+        separate "loading" boolean or hidden UI state to lose track of.
+      </p>
+    </div>
+
+    <div class="diagram-frame">
+<pre class="mermaid">
+stateDiagram-v2
+    [*] --> signedOut
+    signedOut --> startingFlow: startSignIn()
+    startingFlow --> awaitingApproval: device_code received
+    startingFlow --> error: start call failed
+    awaitingApproval --> awaitingApproval: poll → authorization_pending
+    awaitingApproval --> signedIn: poll → success
+    awaitingApproval --> error: access_denied / expired_token
+    awaitingApproval --> signedOut: cancelSignIn()
+    signedIn --> signedOut: signOut()
+    error --> startingFlow: startSignIn() (retry)
+</pre>
+    </div>
+
+    <div class="two-col">
+      <div class="state-card">
+        <span class="name">.awaitingApproval(_, secondsRemaining:)</span>
+        <p>
+          Two <code>Task</code>s (Swift) / coroutines (Kotlin) run at once here:
+          one polls the token endpoint on the server-given <code>interval</code>;
+          the other just ticks <code>secondsRemaining</code> down every second so
+          the countdown on screen stays live. Cancelling either — sign out,
+          back out of the screen — cancels both.
+        </p>
+      </div>
+      <div class="state-card">
+        <span class="name">.signedIn(token, claims)</span>
+        <p>
+          <code>claims</code> comes from decoding the ID token's JWT payload
+          locally, purely for display — the signature is never verified. That's
+          fine for showing "who's signed in" in a demo; a real app needs to
+          verify against the project's JWKS before trusting anything in it.
+        </p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p class="eyebrow">Why <code>slow_down</code> gets special treatment</p>
+      <p>
+        Every other poll outcome is terminal or unchanged. <code>slow_down</code>
+        is the one case that mutates the loop's own pacing —
+        <code>intervalSeconds += 5</code> — because RFC 8628 requires backing off
+        when the server asks, or Descope can start rejecting the polls outright.
+      </p>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="section-head">
+      <span class="section-num">4</span>
+      <h2>Same core, four form factors</h2>
+    </div>
+    <div class="prose">
+      <p>
+        None of the platform-specific work touches Config, Models, Service, or
+        ViewModel. It's all in how the Views layer renders the same five
+        states.
+      </p>
+    </div>
+    <div class="platform-grid">
+      <div class="card">
+        <div class="plabel">iOS</div>
+        <p>Touch UI, portrait-locked on iPhone.</p>
+      </div>
+      <div class="card">
+        <div class="plabel">iPadOS</div>
+        <p>Same target, same binary — content column caps at 500pt via <code>horizontalSizeClass</code> instead of stretching full-width.</p>
+      </div>
+      <div class="card">
+        <div class="plabel">tvOS</div>
+        <p>Separate Xcode target, same source files — <code>#if os(tvOS)</code> scales type/padding for a 10-foot view; SwiftUI focus handles the Siri Remote for free.</p>
+      </div>
+      <div class="card">
+        <div class="plabel">Android TV / Google TV</div>
+        <p>Same APK as the phone build — <code>isTelevision()</code> swaps in a <code>tv-material</code> screen tree with real D-pad focus rings at runtime.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gotcha">
+    <div class="section-head">
+      <span class="section-num">5</span>
+      <h2>The one thing to know before you push this</h2>
+    </div>
+    <div class="warn">
+      <p class="eyebrow">scope is deliberately empty</p>
+      <p>
+        Both <code>Config</code> files request an empty OAuth scope, not
+        <code>openid profile email</code>. That's a workaround, not a design
+        choice: this project's device-authentication consent step
+        (<code>E108001</code>) currently fails on any real scope, regardless of
+        client type. Empty scope means the ID token only carries <code>sub</code>
+        — no name or email. Full detail is in the root README's
+        <code>Troubleshooting</code> section; nothing about it is specific to
+        one platform.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Generated as a reading guide for <code>device-code-sample-app</code> —
+    not part of the shipped repo.
+  </footer>
+</main>

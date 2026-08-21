@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A4F25B15EE108FF9FDE2FD9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B6C3F91B55E8BD1C478A /* SignInView.swift */; };
+		102891033204684A768997AA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF30B6C3F91B55E8BD1C478A /* SignInView.swift */; };
+		29DA286F4107BC953DD0C59B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820893375F8F4386203682D9 /* ProfileView.swift */; };
+		2B70CE42FC3B6F7A5CD3F041 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA05632A2EC374D2ED6FD26 /* QRCodeView.swift */; };
+		2E6E368A7106BDB0EB01EBDF /* DeviceAuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD81C2404A20D3F8528FA9 /* DeviceAuthModels.swift */; };
+		3E8B926AA66E17949351475B /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA05632A2EC374D2ED6FD26 /* QRCodeView.swift */; };
+		45933B9BB99A867548815C94 /* DeviceAuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD81C2404A20D3F8528FA9 /* DeviceAuthModels.swift */; };
+		51564ADAE093390B5F3BD926 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820893375F8F4386203682D9 /* ProfileView.swift */; };
+		54BB62506730C19984EE4C93 /* DeviceAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D740625765EC16054161C /* DeviceAuthService.swift */; };
+		5CB13FDE0018BCBB02F96E8B /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE093D0C10C9840B914D687 /* VerificationView.swift */; };
+		7F819D97A414EC689678B06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F792B8F7E47B3F9DC68FA86E /* Assets.xcassets */; };
+		91CAC389D92266F8D7886474 /* DeviceAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D85C88157CFD3688A25FBA /* DeviceAuthViewModel.swift */; };
+		96CF7DFC95D2795E677A540F /* JWTDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788B85C1DCBE674CD084180 /* JWTDecoder.swift */; };
+		AB2A34D03E0E06E74C0A8994 /* DeviceAuthDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E753E7BB19E05428C8B937 /* DeviceAuthDemoApp.swift */; };
+		B19FBBE506625EF40F184BE1 /* DeviceAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271D740625765EC16054161C /* DeviceAuthService.swift */; };
+		B6971E5108967B29454CC78D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDBC095E7DB6E3A6D7C71D6 /* ContentView.swift */; };
+		C16A7D5AECD5CC090DD1AECE /* DescopeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F1B6DAA1F9D5D983A93CCB /* DescopeConfig.swift */; };
+		C36D76D9B2C9706BA4D4703B /* JWTDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E788B85C1DCBE674CD084180 /* JWTDecoder.swift */; };
+		CA86457DEA3145CA005F196A /* DeviceAuthDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E753E7BB19E05428C8B937 /* DeviceAuthDemoApp.swift */; };
+		CC534BE2979323A41A6057AE /* DescopeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F1B6DAA1F9D5D983A93CCB /* DescopeConfig.swift */; };
+		EDFCE3C645FFBFD7607FC8E9 /* VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE093D0C10C9840B914D687 /* VerificationView.swift */; };
+		F769A5FE0FBD975036ACC25B /* DeviceAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D85C88157CFD3688A25FBA /* DeviceAuthViewModel.swift */; };
+		FB5506E5B786FE30FBCA3BEF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDBC095E7DB6E3A6D7C71D6 /* ContentView.swift */; };
+		FE774B7A9D53E7151C86A0EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AE568FC4CF0306482EE0D8 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		271D740625765EC16054161C /* DeviceAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthService.swift; sourceTree = "<group>"; };
+		45D85C88157CFD3688A25FBA /* DeviceAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthViewModel.swift; sourceTree = "<group>"; };
+		5BA05632A2EC374D2ED6FD26 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		5BE093D0C10C9840B914D687 /* VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationView.swift; sourceTree = "<group>"; };
+		5E06CA786A0DFBFC7CC4032F /* DeviceAuthDemo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DeviceAuthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		820893375F8F4386203682D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		87F1B6DAA1F9D5D983A93CCB /* DescopeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescopeConfig.swift; sourceTree = "<group>"; };
+		95456C51FB0A7078BF46318D /* DeviceAuthDemoTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DeviceAuthDemoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3FD81C2404A20D3F8528FA9 /* DeviceAuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthModels.swift; sourceTree = "<group>"; };
+		AF30B6C3F91B55E8BD1C478A /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		D2E753E7BB19E05428C8B937 /* DeviceAuthDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAuthDemoApp.swift; sourceTree = "<group>"; };
+		DB743D78B0C251CA475EA806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E2AE568FC4CF0306482EE0D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E788B85C1DCBE674CD084180 /* JWTDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTDecoder.swift; sourceTree = "<group>"; };
+		EFDBC095E7DB6E3A6D7C71D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F792B8F7E47B3F9DC68FA86E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		20CF9F2A7FACD2D1E38A3FE1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				45D85C88157CFD3688A25FBA /* DeviceAuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		57512AA4F6A248307BC0793A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D2E753E7BB19E05428C8B937 /* DeviceAuthDemoApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6E9271436C83CB33279C3B29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EFDBC095E7DB6E3A6D7C71D6 /* ContentView.swift */,
+				820893375F8F4386203682D9 /* ProfileView.swift */,
+				5BA05632A2EC374D2ED6FD26 /* QRCodeView.swift */,
+				AF30B6C3F91B55E8BD1C478A /* SignInView.swift */,
+				5BE093D0C10C9840B914D687 /* VerificationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7F2189159CA0220432D47C31 /* DeviceAuthDemo */ = {
+			isa = PBXGroup;
+			children = (
+				DB743D78B0C251CA475EA806 /* Info.plist */,
+				57512AA4F6A248307BC0793A /* App */,
+				8264C651B70B9F8DE3417914 /* Config */,
+				AE5B0E788C5BBC362FBB2BDA /* Models */,
+				D00CDD51FE9ADD22A09BD042 /* Resources */,
+				D08B524AC1A9971E301D4DA2 /* Services */,
+				AC58CFAC1C2CF1B2CC475E5A /* TV */,
+				20CF9F2A7FACD2D1E38A3FE1 /* ViewModels */,
+				6E9271436C83CB33279C3B29 /* Views */,
+			);
+			path = DeviceAuthDemo;
+			sourceTree = "<group>";
+		};
+		8264C651B70B9F8DE3417914 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				87F1B6DAA1F9D5D983A93CCB /* DescopeConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		AC58CFAC1C2CF1B2CC475E5A /* TV */ = {
+			isa = PBXGroup;
+			children = (
+				E2AE568FC4CF0306482EE0D8 /* Assets.xcassets */,
+			);
+			path = TV;
+			sourceTree = "<group>";
+		};
+		AE5B0E788C5BBC362FBB2BDA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3FD81C2404A20D3F8528FA9 /* DeviceAuthModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C956539BF5D771A6BEDD19C6 = {
+			isa = PBXGroup;
+			children = (
+				7F2189159CA0220432D47C31 /* DeviceAuthDemo */,
+				E0877D550E2891B5E2F52ADF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D00CDD51FE9ADD22A09BD042 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F792B8F7E47B3F9DC68FA86E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D08B524AC1A9971E301D4DA2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				271D740625765EC16054161C /* DeviceAuthService.swift */,
+				E788B85C1DCBE674CD084180 /* JWTDecoder.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E0877D550E2891B5E2F52ADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E06CA786A0DFBFC7CC4032F /* DeviceAuthDemo.app */,
+				95456C51FB0A7078BF46318D /* DeviceAuthDemoTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AFA106C953FF5C4862E4689 /* DeviceAuthDemoTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7B0DC051B8737FA518DF2CF /* Build configuration list for PBXNativeTarget "DeviceAuthDemoTV" */;
+			buildPhases = (
+				8E2F6F50E852A80C10D5B985 /* Sources */,
+				F55C6664B16553112B123889 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceAuthDemoTV;
+			packageProductDependencies = (
+			);
+			productName = DeviceAuthDemoTV;
+			productReference = 95456C51FB0A7078BF46318D /* DeviceAuthDemoTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		69ACF3E9EC921E486B961187 /* DeviceAuthDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4C1C467F2D44A6523BF3346 /* Build configuration list for PBXNativeTarget "DeviceAuthDemo" */;
+			buildPhases = (
+				7C589D9311E564FE5D888D11 /* Sources */,
+				09E7573FE3F1846CB5643F58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceAuthDemo;
+			packageProductDependencies = (
+			);
+			productName = DeviceAuthDemo;
+			productReference = 5E06CA786A0DFBFC7CC4032F /* DeviceAuthDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		16D7F05A9CCDDB969BFC9989 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1AFA106C953FF5C4862E4689 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					69ACF3E9EC921E486B961187 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E44CB1B32490C924C9FF5A57 /* Build configuration list for PBXProject "DeviceAuthDemo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C956539BF5D771A6BEDD19C6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E0877D550E2891B5E2F52ADF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				69ACF3E9EC921E486B961187 /* DeviceAuthDemo */,
+				1AFA106C953FF5C4862E4689 /* DeviceAuthDemoTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09E7573FE3F1846CB5643F58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F819D97A414EC689678B06B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F55C6664B16553112B123889 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE774B7A9D53E7151C86A0EA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C589D9311E564FE5D888D11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6971E5108967B29454CC78D /* ContentView.swift in Sources */,
+				CC534BE2979323A41A6057AE /* DescopeConfig.swift in Sources */,
+				CA86457DEA3145CA005F196A /* DeviceAuthDemoApp.swift in Sources */,
+				2E6E368A7106BDB0EB01EBDF /* DeviceAuthModels.swift in Sources */,
+				54BB62506730C19984EE4C93 /* DeviceAuthService.swift in Sources */,
+				91CAC389D92266F8D7886474 /* DeviceAuthViewModel.swift in Sources */,
+				96CF7DFC95D2795E677A540F /* JWTDecoder.swift in Sources */,
+				51564ADAE093390B5F3BD926 /* ProfileView.swift in Sources */,
+				2B70CE42FC3B6F7A5CD3F041 /* QRCodeView.swift in Sources */,
+				102891033204684A768997AA /* SignInView.swift in Sources */,
+				5CB13FDE0018BCBB02F96E8B /* VerificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E2F6F50E852A80C10D5B985 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB5506E5B786FE30FBCA3BEF /* ContentView.swift in Sources */,
+				C16A7D5AECD5CC090DD1AECE /* DescopeConfig.swift in Sources */,
+				AB2A34D03E0E06E74C0A8994 /* DeviceAuthDemoApp.swift in Sources */,
+				45933B9BB99A867548815C94 /* DeviceAuthModels.swift in Sources */,
+				B19FBBE506625EF40F184BE1 /* DeviceAuthService.swift in Sources */,
+				F769A5FE0FBD975036ACC25B /* DeviceAuthViewModel.swift in Sources */,
+				C36D76D9B2C9706BA4D4703B /* JWTDecoder.swift in Sources */,
+				29DA286F4107BC953DD0C59B /* ProfileView.swift in Sources */,
+				3E8B926AA66E17949351475B /* QRCodeView.swift in Sources */,
+				0A4F25B15EE108FF9FDE2FD9 /* SignInView.swift in Sources */,
+				EDFCE3C645FFBFD7607FC8E9 /* VerificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0C70EBA5FE2C962E787B1BB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = DeviceAuthDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.descope.deviceauthdemo;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48191016EBD95E26B3846AA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		62B8CFA510311B04FD3861E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "DeviceAuthDemo/TV/Info-tvOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.descope.deviceauthdemo.tv;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		63FE4A54A1EED942ABBC1530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		8316921874E672BAA31A39E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = DeviceAuthDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.descope.deviceauthdemo;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A8AF5FD29906C2B5E7433C18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "DeviceAuthDemo/TV/Info-tvOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.descope.deviceauthdemo.tv;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C7B0DC051B8737FA518DF2CF /* Build configuration list for PBXNativeTarget "DeviceAuthDemoTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8AF5FD29906C2B5E7433C18 /* Debug */,
+				62B8CFA510311B04FD3861E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D4C1C467F2D44A6523BF3346 /* Build configuration list for PBXNativeTarget "DeviceAuthDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C70EBA5FE2C962E787B1BB2 /* Debug */,
+				8316921874E672BAA31A39E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E44CB1B32490C924C9FF5A57 /* Build configuration list for PBXProject "DeviceAuthDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63FE4A54A1EED942ABBC1530 /* Debug */,
+				48191016EBD95E26B3846AA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 16D7F05A9CCDDB969BFC9989 /* Project object */;
+}

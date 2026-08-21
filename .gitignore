@@ -1,0 +1,8 @@
+# Root-level ignores that apply repo-wide.
+# Platform-specific ignores live in ios/.gitignore and android/.gitignore —
+# git applies nested .gitignore files automatically, no extra config needed.
+
+.DS_Store
+
+# Local Claude Code project config — not part of the shipped sample.
+.claude/
